@@ -1,0 +1,14 @@
+{
+  "name": "mtrend",
+  "version": "1.0.0",
+  "description": "test for mobile trendyol",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "cypress open"
+  },
+  "author": "akagamina",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^5.0.0"
+  }
+}
