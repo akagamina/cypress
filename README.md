@@ -1,0 +1,3 @@
+# mtrend
+
+yarn cypress
