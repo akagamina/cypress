@@ -1,4 +1,12 @@
 describe("Cart", () => {
+  before(() => {
+    cy.clearCookies()
+  })
+
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce('guest_token_2')
+  })
+
   it("succesfully loads", () => {
     cy.visit("/")
   })
@@ -44,16 +52,9 @@ describe("Cart", () => {
 
   it("if product is delete modal should be shown", () => {
     cy.get("#basket .content .q-icon.remove").click()
-
-  })
-
-  it("if delete button click then product should be removed from basket cart", () => {
+    cy.get(".q-popup-main .basket__confirm-text").contains("Sepetinizdeki ürünü silmek istediğinize emin misiniz?")
     cy.get(".q-popup-main .basket__confirm-button-wrapper button").eq(1).click()
+
   })
-
-
-  // it("the shopping cart should be display count how many products it has chosen", () => {
-  //   cy.reload()
-  // })
 })
 
