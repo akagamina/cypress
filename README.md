@@ -1,3 +1,5 @@
-# mtrend
+# Cypress for m.trendyol.com
 
-yarn cypress
+Open command: 
+
+# yarn cypress
