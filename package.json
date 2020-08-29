@@ -4,7 +4,8 @@
   "description": "test for mobile trendyol",
   "main": "index.js",
   "scripts": {
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "run": "cypress run --browser chrome"
   },
   "author": "akagamina",
   "license": "ISC",
