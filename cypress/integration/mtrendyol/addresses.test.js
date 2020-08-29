@@ -22,17 +22,45 @@ describe("Login, add and delete address", () => {
   })
 
   it("address should be add succesfully", () => {
-    cy.get(".q-modal-content .q-box .q-input-wrapper:first input[type='text']").click({ force: true }).type("Home")
-    cy.get(".q-modal-content .q-box .grid-input-container .left input[type='text']").click({ force: true }).type("Omer")
-    cy.get(".q-modal-content .q-box .grid-input-container .right input[type='text']").click({ force: true }).type("Dogan")
-    cy.get(".q-modal-content .q-box input.phone-input").type("547310085")
-    cy.get(".q-modal-content .q-box .grid-input-container .left .dropdown select").select("İstanbul")
-    cy.get(".q-modal-content .q-box .grid-input-container .right .dropdown select").select("Adalar")
-    cy.get(".q-modal-content .q-box form .dropdown:last select").select("Burgazada Mah")
-    cy.get(".q-modal-content .q-box .address-text-area ").type("Su mah bu sok o cad")
-    cy.get(".q-modal-content button").click()
-    cy.get(".q-popup-main .address-creation-success").should("exist")
-    cy.get(".q-popup-main .address-creation-success button").click()
+    let address = {
+      title: "home",
+      name: "omer",
+      surname: "dogan",
+      phone: "547310085",
+      city: "İstanbul",
+      district: "Adalar",
+      neighborhood: "Burgazada Mah",
+      fullAdress: "Bu cad su sok no:3"
+    }
+    cy.addAdress(address)
+  })
+
+  it("address should be edit succesfully", () => {
+    cy.get(".address:first .q-badge > div").contains("Düzenle").click()
+    cy.get("#address .q-modal-main").should("exist")
+    cy.wait(2000)
+    cy.get(".q-modal-content .q-box .q-input-wrapper:first input[type='text']").click({ force: true }).type("2")
+    cy.get(".q-modal-content button").first().click()
+    cy.get(".q-popup-main .address-creation-success .title").contains("ADRESİNİZ GÜNCELLENDİ").should("exist")
+    cy.get(".q-popup-main .address-creation-success .creation-modal-button").contains("Tamam").should("exist").click()
+  })
+
+  it('new address can be add succesfully', () => {
+    cy.get("#address .add-address .plus").click()
+    cy.get("#address .q-modal-main").should("exist")
+
+    let address = {
+      title: "work",
+      name: "erdogan",
+      surname: "oksuz",
+      phone: "547212065",
+      city: "Rize",
+      district: "Ardeşen",
+      neighborhood: "Arıcılar Köyü",
+      fullAdress: "usagım sok. o caddesi"
+    }
+
+    cy.addAdress(address)
   })
 
   it("address should be delete succesfully", () => {
